@@ -1,11 +1,9 @@
 import React from 'react';
 import {Card} from "reactstrap";
+import {MdOutlineWork} from "react-icons/md";
 
 export default function ContactDetails({image,name,phone,email,home,work,birthday,social,relation}) {
     return (
-
-
-        //<BrowserRouter>
         <div id="home" className="container home-container">
             <div className="row">
 
@@ -20,7 +18,9 @@ export default function ContactDetails({image,name,phone,email,home,work,birthda
                                             style={{margin: 5}}
                                             className="rounded-circle img-fluid profile-img"
                                             alt="Profile"
-                                            src={image}   // Ensure square dimensions for source
+                                            src={image}
+                                            height="150px"
+                                            width="150px"
                                         />
                                         <div className="profile-text">
                                             <h5><strong>{name}</strong></h5>
@@ -29,8 +29,8 @@ export default function ContactDetails({image,name,phone,email,home,work,birthda
                                         <hr></hr>
                                         <div align="left" className="profile-contact">
 
-                                            <div style={{fontSize: 25}}>
-
+                                            <div style={{fontSize: 20}}>
+                                                <MdOutlineWork /> {work}
                                             </div>
 
                                         </div>
