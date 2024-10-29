@@ -1,4 +1,5 @@
 import React from 'react';
+import './ContactCard.css'
 import {Card, Col, Container, Row} from "reactstrap";
 import HomeIcon from '@mui/icons-material/Home';
 import GroupIcon from '@mui/icons-material/Group';
@@ -24,7 +25,7 @@ export default function ContactCard({image, name, email, phone, home, relation, 
                             </Col>
                             <Col align="left" md="6" className="p-3 bg-light">
                                  {/*Right Component Content*/}
-                                <h3>{name}</h3>
+                                <h5>{name}</h5>
                                 <p>{email}</p>
                                 <p>{phone}</p>
                             </Col>
