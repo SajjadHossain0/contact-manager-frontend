@@ -1,0 +1,38 @@
+.container {
+    padding: 20px;
+}
+
+.component-left, .component-right {
+    flex: 1;
+    margin: 10px;
+    /* Optional: Add border, padding, or background color */
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.card-container {
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-flow: wrap;
+}
+.box{
+    width: 300px;
+    height: 450px;
+    margin: 20px;
+}
+
+@media  screen and (max-width: 1200px) {
+    .box{
+        width: 40%;
+    }
+}
+@media  screen and (max-width: 60px) {
+    .box{
+        width: 90%;
+    }
+}
+
