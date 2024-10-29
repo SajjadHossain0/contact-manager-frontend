@@ -65,9 +65,7 @@ export default function Header() {
                         variant="h6"
                         noWrap
                         component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-                    >
-                        Contact Manager
+                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
                     </Typography>
                     <Search>
                         <SearchIconWrapper>

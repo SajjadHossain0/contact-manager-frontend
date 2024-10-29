@@ -29,6 +29,9 @@ export default function Home() {
                             name="Sajjad"
                             phone="01738082631"
                             work="Software Engineer"
+                            home="Daka, Bangladesh"
+                            birthday="21, sept"
+                            social="https://www.facebook.com/sajjad.hossain.8082"
                         />
                     }/>
                 </Routes>
