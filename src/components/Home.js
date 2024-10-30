@@ -6,22 +6,23 @@ import './Home.css'
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import AllContacts from "./AllContact";
 import ContactDetails from "./ContactDetails";
+import Welcome from "./Welcome";
 
 export default function Home() {
     return (
         <div>
-            <div className="container" align="right"  style={{margin: 10, position: "relative"}}>
-                <Button variant="contained" href="#contained-buttons">
-                    <AddIcon/> Add new contact
-                </Button>
-            </div>
-
             <BrowserRouter>
 
                 <Routes>
-                    <Route path="/" element={<AllContacts/>}/>
+                    <Route path="/" element={<Welcome />} />
                 </Routes>
 
+                {/*if authenticated*/}
+                <Routes>
+                    <Route path="/all-contacts" element={<AllContacts/>}/>
+                </Routes>
+
+                {/*if authenticated*/}
                 <Routes>
                     <Route path="/contact-details" element={
                         <ContactDetails
