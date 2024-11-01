@@ -5,74 +5,63 @@ import axios from "axios";
 import {Bounce, toast, ToastContainer} from "react-toastify";
 import BASE_URL from "../CallAPI";
 import {useNavigate} from "react-router-dom";
+import CallAPI from "../CallAPI";
+import {Link} from "@mui/joy";
 
 export default function Register() {
-    /*const [name, setName] = React.useState('');
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
-
-    const handleRegister = async (e) => {
-        e.preventDefault();
-
-        try{
-            const response = await axios.post("http://localhost:8080/api/auth/register", {email, password});
-            alert(response.data.message);
-            <AllContacts/>
-        } catch (error) {
-            console.log(error);
-            alert(error.message);
-        }
-
-    }*/
-
     const navigate = useNavigate();
-    const [register, setRegister] = React.useState([]);
 
-    const postRegisterData = (data) => {
-        axios.post(`${BASE_URL}/api/auth/register`, data)
-            .then(response => {
-                    console.log(response)
-                    setTimeout(() =>{
-                        navigate("/login")
-                    });
-                },
-                (error) => {
-                    console.log(error)
-                });
+    const [formData, setFormData] = React.useState({
+
+    });
+
+    const handleInputChange = (e) =>{
+        const {name, value} = e.target;
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
     }
 
-    const handleRegister = (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
-        console.log(register);
-        postRegisterData(register)
+        try{
+            const token = localStorage.getItem('token');
+            await CallAPI.register(formData,token);
 
+            setFormData({
+                name: '',
+                email: '',
+                password: ''
+            })
+
+            alert("successfully registered")
+            navigate('/login')
+        }catch(e){
+            console.error('Error registering user:', e);
+            alert('An error occurred while registering user');
+        }
     }
-
     return (
         <div className="container">
             <Card>
-                <form onSubmit={handleRegister}>
+                <form onSubmit={handleSubmit}>
                     <h3>Register</h3>
                     <input type="text"
-                           name="name"
-                           onChange={(e) => setRegister({...register, name: e.target.value})}
+                           value={formData.name}
+                           onChange={handleInputChange}
                            placeholder="Enter full name"
-                           required={true}
-                    />
+                           required/>
                     <input type="email"
-                           name="email"
-                           onChange={(e) => setRegister({...register, email: e.target.value})}
+                           value={formData.email}
+                           onChange={handleInputChange}
                            placeholder="Enter email"
-                           required={true}
-                    />
+                           required/>
                     <input type="password"
-                           name="password"
-                           onChange={(e) => setRegister({ ...register, password: e.target.value })}
+                           value={formData.password}
+                           onChange={handleInputChange}
                            placeholder="Enter password"
-                           required={true}
-                    />
+                           required/>
                     <Button color="primary" type="submit">Register</Button>
                 </form>
+                <p>already have acc? <Link href="/login">login</Link></p>
             </Card>
 
             <ToastContainer/>

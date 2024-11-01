@@ -10,7 +10,7 @@ export default function Welcome() {
             <hr/>
             <br/>
             <span>To add new contacts please</span>
-            <Button href="/all-contacts" className="icon-link">Sign in</Button>
+            <Button href="/register" className="icon-link">Sign in</Button>
         </div>
     );
 }

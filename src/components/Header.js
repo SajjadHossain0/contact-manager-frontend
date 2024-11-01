@@ -10,14 +10,24 @@ import {
     Popover,
     PopoverBody
 } from "reactstrap";
-import {Avatar} from "@mui/joy";
+import {Avatar, Link} from "@mui/joy";
 import {FaSearch} from "react-icons/fa";
+import CallAPI from "../CallAPI";
 
 
 export default function Header() {
     const [popoverOpen, setPopoverOpen] = useState(false);
 
     const togglePopover = () => setPopoverOpen(!popoverOpen);
+
+    const isAuthenticated = CallAPI.isAuthenticated();
+
+    const handleLogout = () => {
+        const confirmDelete = window.confirm("are you sure!");
+        if (confirmDelete) {
+            CallAPI.logout();
+        }
+    }
 
     return (
         <Navbar className="my-2" color="dark" dark>
@@ -59,12 +69,23 @@ export default function Header() {
                 >
                     <PopoverBody>
                         <ListGroup flush>
+                            {!isAuthenticated &&
+                                <ListGroupItem tag="button" action>
+                                    <Link style={{textDecoration: 'none',color: 'black'}}
+                                          href="/register">
+                                        Sign in
+                                    </Link>
+                                </ListGroupItem>
+                            }
+
+
                             <ListGroupItem tag="button" action>
-                                Sign in
+                                <Link style={{textDecoration: 'none',color: 'black'}}
+                                href="/" onClick={handleLogout}>
+                                    Logout
+                                </Link>
                             </ListGroupItem>
-                            <ListGroupItem tag="button" action>
-                                Logout
-                            </ListGroupItem>
+
                         </ListGroup>
                     </PopoverBody>
                 </Popover>
