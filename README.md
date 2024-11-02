@@ -3,7 +3,7 @@
 This is the frontend part of the Contact Manager application, built using React. It allows users to view, add, edit, and delete contacts. The app connects to a backend API for data storage and retrieval.
 
 ## Backend Repository
-[Click here to access the backend repository](https://github.com/SajjadHossain0/contact-manager-backend.git)
+<a href="https://github.com/SajjadHossain0/contact-manager-backend.git" target="_blank">Click here</a> to access the backend repository
 
 ## Features
 - User authentication with login and registration
