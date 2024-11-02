@@ -11,9 +11,10 @@ This is the frontend part of the Contact Manager application, built using React.
 - Responsive UI with interactive forms
 
 ## Application Screenshots
-![Screenshot 2024-11-03 000501](https://github.com/user-attachments/assets/71ad541e-e219-4ac1-ab86-c0b419f20056)
-![Screenshot 2024-11-03 000517](https://github.com/user-attachments/assets/292cac00-b456-4576-b856-a013f3d700a1)
-![Screenshot 2024-11-03 000538](https://github.com/user-attachments/assets/3f93eb21-09dd-4cbb-b1f6-b2487dec4fd1)
-![Screenshot 2024-11-03 000553](https://github.com/user-attachments/assets/b2e972bd-a9ab-461e-a413-a7bd37ddd3f6)
-![Screenshot 2024-11-03 000611](https://github.com/user-attachments/assets/1710cc76-4734-4799-bc60-33ea8c84ad06)
-![Screenshot 2024-11-03 000632](https://github.com/user-attachments/assets/80b4d23f-3a92-4233-a3c1-5389ce5ff461)
+
+![Screenshot 2024-11-03 002119](https://github.com/user-attachments/assets/660b04e5-3a12-4584-9d66-df2759639195)
+![Screenshot 2024-11-03 002217](https://github.com/user-attachments/assets/2a5619ca-4a83-40e0-a3d1-6f85e17be3ea)
+![Screenshot 2024-11-03 002305](https://github.com/user-attachments/assets/a28e3958-33e0-4a26-ae6f-38fc2a36aedd)
+![Screenshot 2024-11-03 002400](https://github.com/user-attachments/assets/5ef65acc-51a2-4622-b938-65a3623e3866)
+![Screenshot 2024-11-03 002502](https://github.com/user-attachments/assets/3087669c-6499-4ce1-9184-62ddfb7db2fe)
+![Screenshot 2024-11-03 002555](https://github.com/user-attachments/assets/067ab645-9c88-4656-b3c1-e41870ac3de9)
