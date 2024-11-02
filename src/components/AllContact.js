@@ -9,9 +9,9 @@ export default function AllContacts() {
     return (
         <div>
             <div className="container" align="right" style={{margin: 10, position: "relative"}}>
-                <Button variant="contained" href="#contained-buttons">
-                    <AddIcon/> Add new contact
-                </Button>
+                    <Button variant="contained" href="/add-new-contact">
+                        <AddIcon/> Add new contact
+                    </Button>
             </div>
             <Container className="mt-5">
                 <Row>

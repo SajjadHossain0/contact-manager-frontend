@@ -10,6 +10,7 @@ import Welcome from "./Welcome";
 import Register from "./Register";
 import Login from "./Login";
 import CallAPI from "../CallAPI";
+import AddNewContact from "./AddNewContact";
 
 export default function Home() {
 
@@ -38,6 +39,12 @@ export default function Home() {
                 {isAuthenticated && (
                     <Routes>
                         <Route path="/all-contacts" element={<AllContacts/>}/>
+                    </Routes>
+                )}
+
+                {isAuthenticated && (
+                    <Routes>
+                        <Route path="/add-new-contact" element={<AddNewContact />}/>
                     </Routes>
                 )}
 
