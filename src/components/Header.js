@@ -31,8 +31,10 @@ export default function Header() {
 
     return (
         <Navbar className="my-2" color="dark" dark>
-            <NavbarBrand href="/">
-                {/*<img
+
+            {!isAuthenticated && (
+                <NavbarBrand href="/">
+                    {/*<img
                     alt="logo"
                     src=""
                     style={{
@@ -40,8 +42,24 @@ export default function Header() {
                         width: 40
                     }}
                 />*/}
-                Contact
-            </NavbarBrand>
+                    Contact
+                </NavbarBrand>
+            )}
+
+            {isAuthenticated && (
+                <NavbarBrand href="/all-contacts">
+                    {/*<img
+                    alt="logo"
+                    src=""
+                    style={{
+                        height: 40,
+                        width: 40
+                    }}
+                />*/}
+                    Contact
+                </NavbarBrand>
+            )}
+
 
             <div className="search">
                 <InputGroup>
@@ -72,7 +90,7 @@ export default function Header() {
                             {!isAuthenticated &&
                                 <ListGroupItem tag="button" action>
                                     <Link style={{textDecoration: 'none',color: 'black'}}
-                                          href="/register">
+                                          href="/Register">
                                         Sign in
                                     </Link>
                                 </ListGroupItem>

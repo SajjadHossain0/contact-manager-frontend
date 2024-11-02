@@ -4,45 +4,43 @@ class CallAPI {
     static BASE_URL = "http://localhost:8080";
 
     static async login(email, password){
-        try{
-            const response = await axios.post(`${CallAPI.BASE_URL}/api/auth/login`, {email, password});
-            return response.data;
-        }catch(error){
-            throw error;
+        try {
+            const response = await axios.post(`${CallAPI.BASE_URL}/api/auth/login`, { email, password });
+            console.log("Token received:", response.data);
+            return response.data;  // Assumes response.data is a token string
+        } catch (error) {
+            console.error("Error during login:", error);
+            if (error.response) {
+                throw new Error(error.response.data || "Login failed. Please try again.");
+            } else {
+                throw new Error("Network error. Please check your connection.");
+            }
         }
     }
 
-    static async register(userData, token){
-        try{
-            const response = await axios.post(`${CallAPI.BASE_URL}/api/auth/register`, userData,
-
-                {
-                    headers: {Authorization: `Bearer ${token}`}
-                });
+    static async register(userData) {
+        try {
+            const response = await axios.post(`${CallAPI.BASE_URL}/api/auth/register`, userData);
+            console.log("Registration response:", response.data);
             return response.data;
-
-        }catch(error){
-            throw error;
+        } catch (error) {
+            console.error("Error during registration:", error);
+            if (error.response) {
+                throw new Error(error.response.data || "Registration failed. Please try again.");
+            } else {
+                throw new Error("Network error. Please check your connection.");
+            }
         }
     }
 
-    /*Check authentication*/
-    static logout(){
+    static logout() {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
     }
 
-    static isAuthenticated(){
-        const token = localStorage.getItem("token");
-        return !!token;
+    static isAuthenticated() {
+        return !!localStorage.getItem("token");
     }
-
-    static isUser(){
-        const role = localStorage.getItem("role");
-        return role === 'USER'
-    }
-
 }
-
 
 export default CallAPI;
