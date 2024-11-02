@@ -45,6 +45,7 @@ export default function Home() {
                 {isAuthenticated && (
                     <Routes>
                         <Route path="/all-contacts" element={<AllContacts/>}/>
+                        <Route path="/contact/:id" element={<ContactDetails />} /> {/* Define route for contact details */}
                     </Routes>
                 )}
 

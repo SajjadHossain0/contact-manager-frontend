@@ -78,6 +78,60 @@ class CallAPI {
         }
     }
 
+    static async addContact(userData) {
+
+        const token = localStorage.getItem("token");
+        const userId = localStorage.getItem("userId");
+
+        try {
+            const response = await axios.post(`${CallAPI.BASE_URL}/api/users/${userId}/contact`, userData);
+            console.log("Add contact response:", response.data);
+            return response.data;
+        } catch (error) {
+            console.error("Error during Adding contact:", error);
+            if (error.response) {
+                throw new Error(error.response.data || "Adding failed. Please try again.");
+            } else {
+                throw new Error("Network error. Please check your connection.");
+            }
+        }
+    }
+
+    static async updateContact(userId, contactId, contactData) {
+        const token = localStorage.getItem("token");
+
+        try {
+            const response = await axios.put(`${CallAPI.BASE_URL}/api/users/${userId}/contact/${contactId}`, contactData, {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+            console.log("Update contact response:", response.data);
+            return response.data;
+        } catch (error) {
+            console.error("Error during updating contact:", error);
+            if (error.response) {
+                throw new Error(error.response.data || "Update failed. Please try again.");
+            } else {
+                throw new Error("Network error. Please check your connection.");
+            }
+        }
+    }
+
+    static async deleteContact(contactId) {
+        const token = localStorage.getItem("token");
+        const userId = localStorage.getItem("userId");
+
+        try {
+            const response = await axios.delete(`${CallAPI.BASE_URL}/api/users/${userId}/contact/${contactId}`, {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+            console.log("Delete contact response:", response.data);
+            return response.data;
+        } catch (error) {
+            console.error("Error deleting contact:", error.message);
+            throw new Error(error.response?.data || "Failed to delete contact.");
+        }
+    }
+
 
     static logout() {
         localStorage.removeItem("token");

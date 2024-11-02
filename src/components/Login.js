@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import CallAPI from "../CallAPI";
+import {Card, Form, FormGroup, Input, Label, Button} from "reactstrap";
+import {Link} from "@mui/joy";
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -19,26 +21,59 @@ export default function Login() {
                 window.location.reload();
             }
         } catch (err) {
-            setError(err.message);
+            setTimeout(() => {
+                setError("Something went wrong");
+            }, 1000); // 1000 ms = 1 second
+
         }
     };
 
     return (
-        <div className="container">
-            <h2>Login</h2>
-            {error && <p>{error}</p>}
-            <form onSubmit={handleSubmit}>
-                <input type="email"
-                       value={email}
-                       onChange={(e) => setEmail(e.target.value)}
-                       placeholder="Email"
-                       required />
-                <input type="password"
-                       value={password}
-                       onChange={(e) => setPassword(e.target.value)}
-                       placeholder="Password" required />
-                <button type="submit">Login</button>
-            </form>
+        <div align="center" className="container">
+            <Card className="shadow container">
+                <h4>Sign In</h4>
+
+                {error &&
+                    <p style={{backgroundColor:"red",padding:10}}>{error}</p>
+                }
+
+                <div align="left">
+                    <Form onSubmit={handleSubmit}>
+                        <FormGroup>
+                            <Label for="email">
+                                Email
+                            </Label>
+                            <Input
+                                id="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="Enter email..."
+                                type="text"
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="password">
+                                Password
+                            </Label>
+                            <Input
+                                id="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="Enter number..."
+                                type="text"
+                            />
+                        </FormGroup>
+
+                        <div align="center">
+                            <Button color="success">Sign In</Button>
+                        </div>
+                    </Form>
+
+                    <div align="center" style={{marginTop: "10px"}}>
+                        <p>Don't have an account? <Link href="/register">Register Here</Link></p>
+                    </div>
+                </div>
+            </Card>
         </div>
     );
 }

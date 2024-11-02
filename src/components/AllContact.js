@@ -5,9 +5,11 @@ import { Col, Container, Row } from "reactstrap";
 import { Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import CallAPI from "../CallAPI";
+import {useNavigate} from "react-router-dom";
 
 export default function AllContacts() {
 
+    const navigate = useNavigate();
     const [contacts, setContacts] = useState([]);
     const [error, setError] = useState('');
 
@@ -26,6 +28,10 @@ export default function AllContacts() {
         fetchContacts();
     }, []);
 
+    const handleContactClick = (id) => {
+        navigate(`/contact/${id}`); // Navigate to contact details page
+    };
+
     return (
         <div>
             <div className="container" align="right" style={{ margin: 10, position: "relative" }}>
@@ -38,22 +44,18 @@ export default function AllContacts() {
                     {error && <p>{error}</p>}
                     {contacts.map(contact => (
                         <Col lg="3" md="4" sm="6" xs="12" className="mb-4" key={contact.id}>
-                            <Link href={`/contact-details/${contact.id}`} style={{ textDecoration: 'none', color: "black" }}>
+                            <div onClick={() => handleContactClick(contact.id)} style={{cursor: 'pointer'}}>
                                 <ContactCard
                                     name={contact.name}
                                     phone={contact.number}
                                     home={contact.home}
                                     work={contact.work}
-                                    relation={contact.relationship}
-                                    birthday={contact.birthday}
-                                    image={contact.image || "default-image-url"} // Add default image if not present
-                                />
-                            </Link>
+                                /></div>
                         </Col>
-                    ))}
+                        ))}
                 </Row>
             </Container>
         </div>
-    );
+);
 
 }

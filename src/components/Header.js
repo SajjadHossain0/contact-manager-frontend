@@ -17,16 +17,17 @@ import CallAPI from "../CallAPI";
 
 export default function Header() {
     const [popoverOpen, setPopoverOpen] = useState(false);
-
     const togglePopover = () => setPopoverOpen(!popoverOpen);
 
     const isAuthenticated = CallAPI.isAuthenticated();
 
     const handleLogout = () => {
-        const confirmDelete = window.confirm("are you sure!");
+        /*const confirmDelete = window.confirm("are you sure!");
         if (confirmDelete) {
             CallAPI.logout();
-        }
+        }*/
+        CallAPI.logout();
+
     }
 
     return (
@@ -45,7 +46,6 @@ export default function Header() {
                     Contact
                 </NavbarBrand>
             )}
-
             {isAuthenticated && (
                 <NavbarBrand href="/all-contacts">
                     {/*<img
@@ -59,7 +59,6 @@ export default function Header() {
                     Contact
                 </NavbarBrand>
             )}
-
 
             <div className="search">
                 <InputGroup>
@@ -90,7 +89,7 @@ export default function Header() {
                             {!isAuthenticated &&
                                 <ListGroupItem tag="button" action>
                                     <Link style={{textDecoration: 'none',color: 'black'}}
-                                          href="/Register">
+                                          href="/login">
                                         Sign in
                                     </Link>
                                 </ListGroupItem>
