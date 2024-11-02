@@ -96,14 +96,14 @@ export default function Header() {
                                 </ListGroupItem>
                             }
 
-
+                            {isAuthenticated &&
                             <ListGroupItem tag="button" action>
                                 <Link style={{textDecoration: 'none',color: 'black'}}
                                 href="/" onClick={handleLogout}>
                                     Logout
                                 </Link>
                             </ListGroupItem>
-
+                            }
                         </ListGroup>
                     </PopoverBody>
                 </Popover>

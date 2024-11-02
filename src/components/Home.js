@@ -34,6 +34,12 @@ export default function Home() {
                     </Routes>
                 )}
 
+                {isAuthenticated && (
+                    <Routes>
+                        <Route path="/" element={<AllContacts/>}/>
+                    </Routes>
+                )}
+
 
                 {/*if authenticated*/}
                 {isAuthenticated && (

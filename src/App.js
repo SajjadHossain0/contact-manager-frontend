@@ -4,12 +4,15 @@ import Header from "./components/Header";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import ContactDetails from "./components/ContactDetails";
 import AllContacts from "./components/AllContact";
+import CallAPI from "./CallAPI";
 
 function App() {
-  return (
+
+    return (
     <div className="App">
         <Header />
-        <Home/>
+            <Home/>
+
 
     </div>
   );

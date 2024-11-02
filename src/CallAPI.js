@@ -6,13 +6,20 @@ class CallAPI {
     static async login(email, password){
         try {
             const response = await axios.post(`${CallAPI.BASE_URL}/api/auth/login`, { email, password });
-            console.log("Token received:", response.data);
+            console.log("Full response received:", response); // Log the entire response
 
-            // Save token and userId (assuming userId is part of the response)
-            localStorage.setItem("token", response.data.token); // Adjust this based on your response structure
-            localStorage.setItem("userId", response.data.userId); // Save the userId
+            console.log("Token received:", response.data.token);
+            console.log("User ID received:", response.data.userId);
 
-            return response.data;  // Assumes response.data is a token string
+
+            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("userId", response.data.userId);
+            console.log(localStorage.getItem("token"));
+            console.log(localStorage.getItem("userId")); // should log the correct userId
+
+
+
+            return response.data.token;  // Assumes response.data is a token string
         } catch (error) {
             console.error("Error during login:", error);
             if (error.response) {
@@ -38,33 +45,39 @@ class CallAPI {
         }
     }
 
-    // Set the user's ID and token for authentication
-    static setUser(userId, token) {
-        this.userId = localStorage.getItem("userId");
-        this.token = localStorage.getItem("token");
-    }
-
-    static async getContactByUser() {
-        const userId = localStorage.getItem("userId");
+    static async getAllContacts() {
         const token = localStorage.getItem("token");
+        const userId = localStorage.getItem("userId");
 
-        if (!userId || !token) {
-            throw new Error("User not authenticated");
-        }
+        console.log("Token:", token);
+        console.log("User ID:", userId);
 
         try {
-            const response = await axios.get(`${CallAPI.BASE_URL}/${userId}/contact`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                }
+            const response = await axios.get(`${CallAPI.BASE_URL}/api/users/${userId}/contact`, {
+                headers: { Authorization: `Bearer ${token}` },
             });
-            console.log("Contacts retrieved:", response.data); // Log the response data
-            return response.data; // Ensure this returns the expected contacts list
+            return response.data;
         } catch (error) {
-            console.error("Error during get contactByUser:", error);
+            console.error("Error fetching contacts:", error);
             throw new Error(error.response?.data || "Failed to fetch contacts.");
         }
     }
+
+    static async getContactById(contactId) {
+        const token = localStorage.getItem("token");
+        const userId = localStorage.getItem("userId");
+
+        try {
+            const response = await axios.get(`${CallAPI.BASE_URL}/api/users/${userId}/contact/${contactId}`, {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+            return response.data;
+        } catch (error) {
+            console.error("Error fetching contact details:", error);
+            throw new Error(error.response?.data || "Failed to fetch contact details.");
+        }
+    }
+
 
     static logout() {
         localStorage.removeItem("token");
